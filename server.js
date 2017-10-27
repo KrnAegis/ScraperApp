@@ -35,8 +35,8 @@ if (process.env.MONGODB_URI){
 } else {
         mongoose.connect("mongodb://localhost/week18Populater", {
           useMongoClient: true
-       }
-});
+       })
+};
 
 // Routes
 
