@@ -1,0 +1,36 @@
+#articles, #savedArticles, .jumbotron, .modal-title, .modal-body, h3 {
+	text-align: center;
+}
+.jumbotext {
+	margin-top: 125px;
+}
+#scrape {
+	height: 100%;
+	margin: 8px;
+}
+#savebtn, #note, #deleteArt {
+	position: relative;
+	float: right;
+	top: -10px;
+	height: 38px;
+}
+.jumbotron {
+    position: relative;
+    background: url("https://wallpaperscraft.com/image/morning_coffee_newspaper_79004_1920x1080.jpg") center center;
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    overflow: hidden;
+    color: #1b3c99;
+    border-bottom-width: 15px;
+    border-bottom-style: solid;
+    border-bottom-color: #222222;
+
+}
+.navbar {
+	margin-bottom: 0px;
+}
+textarea, input {
+    width: 100%;
+    height: 50px;
+}
