@@ -18,6 +18,10 @@ var SavedSchema = new Schema({
     type: String,
     required: true
   },
+  date: {
+    type: String,
+    required: false
+  },
 
   note: {
     type: Schema.Types.ObjectId,

@@ -27,6 +27,16 @@
     border-bottom-color: #222222;
 
 }
+
+.panel {
+    position: relative;
+}
+
+.dateStyle {
+    float: left;
+    position: absolute;
+}
+
 .navbar {
 	margin-bottom: 0px;
 }

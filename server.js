@@ -50,13 +50,15 @@ app.get("/saved", function(req, res){
 
 //scraping nytimes
 app.get("/scrape", function(req, res) {
-  axios.get("https://www.nytimes.com/section/world/middleeast?module=SectionsNav&action=click&version=BrowseTree&region=TopBar&contentCollection=World%2FMiddle%20East&contentPlacement=2&pgtype=Homepage").then(function(response) {
+  axios.get("https://www.nytimes.com/section/us?module=SectionsNav&action=click&version=BrowseTree&region=TopBar&contentCollection=U.S.&pgtype=sectionfront")
+       .then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-    $(".story-body").each(function(i, element) {
+    $(".story").each(function(i, element) {
       // Save an empty result object
       var result = {};
       result.summary = $(this)
+        .children()
         .children()
         .children()
         .children("p.summary")
@@ -64,11 +66,17 @@ app.get("/scrape", function(req, res) {
       result.title = $(this)
         .children()
         .children()
+        .children()
         .children("h2")
         .text();
       result.link = $(this)
         .children()
+        .children()
         .attr("href");
+      result.date = $(this)
+        .children(".story-footer")
+        .children(".dateline")
+        .text();
 
       // Create a new Article using the `result` object built from scraping
       db.Article
@@ -79,6 +87,7 @@ app.get("/scrape", function(req, res) {
           res.json(err);
         });
     });
+    console.log(response.data)
   });
 });
 
@@ -93,6 +102,19 @@ app.get("/articles", function(req, res) {
     .catch(function(err) {
       res.json(err);
     });
+});
+
+// Routes for deleting all Articles from db
+app.get("/articles/deleteAll", function(req, res) {
+  db.Article
+    .deleteMany({})
+    .then(function(err) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log("All article removed!")
+      }
+    })
 });
 
 //get saved articles

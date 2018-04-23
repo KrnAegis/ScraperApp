@@ -3,7 +3,7 @@ $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < 20; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<div class='panel panel-primary'>" + '<div class="panel-heading"><button id="savebtn" class="btn btn-success" data-id='+ data[i]._id + '>Save Article</button><h3 class="panel-title"><a href="' + data[i].link + '">' + data[i].title + '</a></h3></div>' + "<div class='panel-body'>" + data[i].summary + "</div></div>");
+    $("#articles").append("<div class='panel panel-primary'>" + '<div class="panel-heading"><button id="savebtn" class="btn btn-success" data-id='+ data[i]._id + '>Save Article</button><h3 class="panel-title"><div class="dateStyle"><p>' + data[i].date + '</p></div><a href="' + data[i].link + '">' + data[i].title + '</a></h3></div>' + "<div class='panel-body'>" + data[i].summary + "</div></div>");
   }
 });
 
@@ -22,10 +22,20 @@ $("#scrape").on("click", function(){
   })
 })
 
+$("#deleteAll").on("click", function(){
+  $.ajax({
+    method: "GET",
+    url: "/articles/deleteAll"
+  })
+})
+
 $("#modal-btn").on("click", function(){
     location.reload();
 })
 
+$("#modalDel-btn").on("click", function(){
+    location.reload();
+})
 
 $(document).on("click", "#note", function() {
   // Empty the notes from the note section
